@@ -1,10 +1,10 @@
 <?php
 class database{
  
-	var $host = "localhost";
-	var $uname = "toor";
-	var $pass = "1";
-	var $db = "crudOOP";
+	protected $host = "localhost";
+	protected $uname = "toor";
+	protected $pass = "1";
+	protected $db = "crudOOP";
     protected $conn;
 
     function __construct(){
@@ -12,12 +12,52 @@ class database{
     }
 
     function tampil_data(){
-       
-        $data = mysqli_query($this->conn, "SELECT * FROM admin");
+        $jumlahDataHalaman= 2;
+        $result = mysqli_query($this->conn, "SELECT * FROM admin");
+        $jumlahData = mysqli_num_rows($result);
+        $jumlahHalaman = ceil($jumlahData / $jumlahDataHalaman);
+
+        // if(isset($_GET['halaman'])){
+        //     $halamanAktif=$_GET['halaman'];
+        // }else{
+        //     $halamanAktif=1;
+        // }
+        $halamanAktif=(isset($_GET['halaman']) ) ? $_GET['halaman'] : 1;
+        $awalData=($jumlahDataHalaman * $halamanAktif) - $jumlahDataHalaman;
+
+
+        $data = mysqli_query($this->conn, "SELECT * FROM admin LIMIT $awalData, $jumlahDataHalaman");
         while($d = mysqli_fetch_array($data)){
             $hasil[] = $d;
         }
         return $hasil;
+    }
+
+    function search($pencarian){
+        $jumlahDataHalaman= 2;
+        $result = mysqli_query($this->conn, "SELECT * FROM admin");
+        $jumlahData = mysqli_num_rows($result);
+        $jumlahHalaman = ceil($jumlahData / $jumlahDataHalaman);
+
+        // if(isset($_GET['halaman'])){
+        //     $halamanAktif=$_GET['halaman'];
+        // }else{
+        //     $halamanAktif=1;
+        // }
+        $halamanAktif=(isset($_GET['halaman']) ) ? $_GET['halaman'] : 1;
+        $awalData=($jumlahDataHalaman * $halamanAktif) - $jumlahDataHalaman;
+
+        $data_cari = mysqli_query($this->conn, "SELECT * FROM admin WHERE id LIKE '%$pencarian%' OR username LIKE '%$pencarian%' LIMIT $awalData, $jumlahDataHalaman");
+        $adaTidakData=mysqli_num_rows($data_cari);
+        if($adaTidakData !=0):
+            while($ds = mysqli_fetch_array($data_cari)){
+                $hasils[] = $ds;
+            }
+            return $hasils;
+        else:
+            echo "<tr><td colspan='5' style='text-align:center;' >Data tidak ditemukan</td></tr>";
+        endif;
+        
     }
 
     function insert($username,$pass,$akses){
