@@ -86,7 +86,12 @@ class database{
         return $resUpdate;
     }
 
-   
+    function like($id){
+
+        $sql     = "UPDATE `admin` SET `like`= `like`+1 WHERE id = '$id'";
+        $resLike = mysqli_query($this->conn, $sql);
+        return $resLike;
+    }
 } 
 
 

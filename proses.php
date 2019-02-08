@@ -12,5 +12,8 @@
         }elseif($aksi == "update"){
             $db->update($_POST['id'],$_POST['username'],$_POST['password'],$_POST['akses']);
             header("location:tampil-data.php");
+        }elseif($aksi == "like"){
+            $db->like($_GET['id']);
+            header("location:tampil-data.php");
         }
 ?>

@@ -5,7 +5,7 @@
             <th>Username</th>
             <th>Password</th>
             <th>Akses ID</th>
-           
+            <th>Jumlah Like</th>
             <th>Opsi</th>
         </tr>
         <?php
@@ -26,11 +26,11 @@
                     endif;
                 ?>
             </td>
-           
+            <td><?php echo $x['like'];?></td>
             <td>
                 <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update">Edit</a>
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')">Hapus</a>			
-               
+                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like">Like</a>
             </td>
         </tr>
         <?php 
