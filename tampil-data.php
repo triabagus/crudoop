@@ -15,7 +15,7 @@
     ?>
     <h1>CRUD OOP PHP</h1>
     <h3>Data User</h3>
-
+    <a href="download.php">download</a><br>
     <a href="insert-data.php">Input Data</a><br><br>
     
     <form action="" method="post">
@@ -24,11 +24,28 @@
     </form><br>
     <?php
     include 'pagination.php';
-        if (isset($_POST["cari"])) {
+        if (isset($_POST["cari"])) :
             include 'search.php';
-        }elseif(empty($_POST['cari'])){
+        elseif(empty($_POST['cari'])):
             include 'default-data.php';
-        }
+        endif;
     ?>
+    <?php
+        // $file = 'counter.txt';
+        // if(file_exists($file)){
+        //     $file_open = fopen($file, "r");
+        //     $cek = trim(fgets($file_open, 255));
+        //     $cek++;
+        // }  else {
+        //     $cek = 1;
+        // }
+        // $file_open = fopen($file, "w");
+        // fwrite($file_open, $cek);
+        // fclose($file_open);
+
+        // echo 'Anda pengunjung ke '.$cek;
+    ?>
+    <br><br>
+    
 </body>
 </html>

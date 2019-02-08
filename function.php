@@ -85,6 +85,9 @@ class database{
         $resUpdate = mysqli_query($this->conn, "UPDATE admin SET username='$username',pass='$pass',akses_id='$akses' WHERE id='$id'");
         return $resUpdate;
     }
+
+   
 } 
+
 
 

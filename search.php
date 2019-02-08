@@ -4,6 +4,7 @@
             <th>Username</th>
             <th>Password</th>
             <th>Akses ID</th>
+           
             <th>Opsi</th>
         </tr>
         <?php
@@ -24,9 +25,11 @@
                     endif;
                 ?>
             </td>
+           
             <td>
                 <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update">Edit</a>
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')">Hapus</a>			
+               
             </td>
         </tr>
         <?php 
