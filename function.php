@@ -5,7 +5,7 @@ class database{
 	protected $uname = "toor";
 	protected $pass = "1";
 	protected $db = "crudOOP";
-    protected $conn;
+    public $conn;
 
     function __construct(){
         $this->conn = mysqli_connect($this->host, $this->uname, $this->pass, $this->db)or die(mysqli_error());
@@ -87,13 +87,59 @@ class database{
     }
 
     function like($id){
-
         $sql     = "UPDATE `admin` SET `suka`= `suka`+1 WHERE id = '$id'";
         $resLike = mysqli_query($this->conn, $sql);
         return $resLike;
     }
 } 
 
+class sign extends database{
+
+    // proses registrasi
+    public function reg_user($username,$pass){
+        $sql="SELECT * FROM admin WHERE username='$username'"; // OR email='$email'
+        $cekUser = mysqli_query($this->conn,$sql);
+        $countUser  = $cekUser->num_rows;
+
+        if($countUser == 0){
+            $sqlReg="INSERT INTO admin(username,pass,akses_id,suka,gambar) VALUES ('$username','$pass',2,0,'')";
+            $resSqlReg=mysqli_query($this->conn,$sqlReg);
+
+            return $resSqlReg;
+        }else{
+            return false;
+        }
+    }
+
+    // proses login
+    public function loginCek_user($username,$password){
+        $sqlCekLogin="SELECT id FROM admin WHERE username='$username' AND pass='$password'";
+        // cek login
+        $resultLogin = mysqli_query($this->conn,$sqlCekLogin);
+        $userData    = mysqli_fetch_array($resultLogin);
+        $countRow    = $resultLogin->num_rows;
+
+        if($countRow == 1){
+            // membuat SESSION
+            $_SESSION['login']  = true;
+            $_SESSION['id']     = $userData['id'];
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    // start SESSION
+    public function get_session(){
+        return $_SESSION['login'];
+    }
+
+    // start Logout
+    public function user_logout(){
+        $_SESSION['login'] = FALSE;
+        session_destroy();
+    }
+}
 ////////// function counter visitor
 
 // class hitCuonter{

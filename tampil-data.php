@@ -1,3 +1,15 @@
+<?php
+session_start();
+include_once 'function.php';
+    $user = new sign(); $id = $_SESSION['id'];
+    if (!$user->get_session()){
+    header("location:login.php");
+    }
+    if (isset($_GET['keluar'])){
+    $user->user_logout();
+    header("location:login.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +24,6 @@
 </head>
 <body >
     <?php
-        include 'function.php';
         $db = new database();
     ?>
      <div class="container" style="margin-top: 50px;">
@@ -24,19 +35,22 @@
                 <h3>Data User</h3>
             </div>
             <div class="col-3">
+            
             <a class="btn btn-primary" href="insert-data.php"><i class="fas fa-user-plus"></i> Input Data</a> 
                 <a class="btn btn-dark" href="download.php"><i class="fas fa-file-download"></i> download</a>
+                
             </div>
             <div class="row">
             <form action="" method="post">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" placeholder="Cari..." aria-label="Recipient's username" aria-describedby="button-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" name="cari"><i class="fas fa-search"></i> Search</button>
+                                <button class="btn btn-dark" type="submit" name="cari"><i class="fas fa-search"></i> Search</button>
                             </div>
                 </div>
             </form>   
-        </div>
+            </div>
+            
         </div>       
         <div class="row">
             <?php
@@ -74,6 +88,8 @@
                 ?>
             </div>
         </div>
+        <a class="btn btn-dark" href="tampil-data.php?keluar=logout"><i class="fas fa-sign-out-alt"></i> Log out</a>
     </div>
+    
 </body>
 </html>
