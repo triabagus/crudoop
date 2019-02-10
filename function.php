@@ -55,7 +55,7 @@ class database{
             }
             return $hasils;
         else:
-            echo "<tr><td colspan='5' style='text-align:center;' >Data tidak ditemukan</td></tr>";
+            echo "<tr><td colspan='6' style='text-align:center;' >Data tidak ditemukan</td></tr>";
         endif;
         
     }
@@ -93,6 +93,55 @@ class database{
         return $resLike;
     }
 } 
+
+////////// function counter visitor
+
+class hitCuonter{
+    private $expire; // menentukan umur cookies
+    private $file      ='counter.txt'; //file buat menyimpan counter hit visitor
+
+    public function __construct(){
+        if(!file_exists($this->file)){ // file exists : fungsi php untuk mengetahui apakah ada file tersebut
+            // kondisi apabila file counter.txt belom ada ,buat baru dengan nilai 0
+            $handle    = fopen($this->file,'w');
+            $data      = 0;
+            fwrite($handle,$data);
+        }
+        $this->expire  = 30 * 86400; //usia cookies 1 bulan
+    }
+
+    public function hitung(){
+        if(!isset($_COOKIE['counter'])){
+            //cookies kosong dan tambahkan jumlah pengunjung
+            $handle     = fopen($this->file,'r');
+            $data       = intval(fread($handle,filesize($this->file)));
+            // mengambil nilai dari counter.txt
+            $nilaiBaru  = $data + 1;// tambahkan nilai 1
+            //simpan nilai baru dengan
+            $handle     =  fopen($this->file,'w');
+            fwrite($handle, $nilaiBaru);
+            setcookie('counter', time(), time() + $this->expire);
+            // tambahkan cookiesdengan nilai tanggal sekarang
+        }
+    }
+
+    public function tampil(){
+        //mengambil nilai counter.txt
+        $handle     = fopen($this->file,'r');
+        $data       = intval(fread($handle, filesize($this->file)));
+        return $data;
+    }
+
+    public function waktu(){
+        $history    = null;
+        // menampilakan kapan user visit 
+        if(!empty($_COOKIE['counter'])){
+                $get        = $_COOKIE['counter'];
+                $history    = date("d F Y",$get);
+        }
+        return $history;
+    }
+}
 
 
 

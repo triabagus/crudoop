@@ -1,19 +1,20 @@
-
-<table border="1">
+<div class="table-responsive">
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-            <th>No</th>
+            <th>ID</th>
             <th>Username</th>
             <th>Password</th>
             <th>Akses ID</th>
             <th>Jumlah Like</th>
             <th>Opsi</th>
         </tr>
+    </thead>
         <?php
-        $no = 1;
         foreach($db->tampil_data() as $x){
         ?>
         <tr>
-            <td><?php echo $no++; ?></td>
+            <td><?php echo $x['id']; ?></td>
             <td><?php echo $x['username']; ?></td>
             <td><?php echo $x['pass']; ?></td>
             <td><?php 
@@ -26,14 +27,15 @@
                     endif;
                 ?>
             </td>
-            <td><?php echo $x['like'];?></td>
+            <td><i class="fas fa-heart"></i> <?php echo $x['like'];?></td>
             <td>
-                <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update">Edit</a>
-                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')">Hapus</a>			
-                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like">Like</a>
+                <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update"><i class="fas fa-edit"></i> Edit</a>
+                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')"><i class="fas fa-trash-alt"></i> Hapus</a>			
+                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like"><i class="fas fa-thumbs-up"></i> Like</a>
             </td>
         </tr>
         <?php 
         }
         ?>
     </table>
+</div>
