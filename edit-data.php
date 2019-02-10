@@ -7,53 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
     <?php
         include 'function.php';
         $db = new database();
     ?>
-    <h1>CRUD OOP PHP</h1>
-    <h3>Edit Data</h3>
-
-    <form action="proses.php?aksi=update" method="post">
-    <?php
-    foreach($db->edit($_GET['id']) as $d){
-    ?>
-    <table>
-        <tr>
-            <td>Username</td>
-            <td>
-                <input type="hidden" name="id" value="<?php echo $d['id'] ?>">
-                <input type="text" name="username" value="<?php echo $d['username'] ?>">
-            </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input id="password" type="password" name="password" value="<?php echo $d['pass']?>"><input type="checkbox" onclick="myViewPass()">Show Password</td>
-        </tr>
-        <tr>
-            <td>Hak Akses</td>
-            <td>
-                <select name="akses">
-                <?php if($d['akses_id']== 1){?>
-                    <option value=1 selected>Admin</option>
-                    <option value=2>User</option>
-                <?php }elseif($d['akses_id']== 2){?>
-                    <option value=1>Admin</option>
-                    <option value=2 selected>User</option>
-                <?php }?>
-                </select> 
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><button type="submit" name="submit">Update</button></td>
-        </tr>
-    </table>
-    <?php } ?>
-    </form>
-    
+    <div class="container" style="margin-top:50px;">
+        <h1>CRUD OOP PHP</h1>
+        <h3>Tambah Data </h3>
+        <form action="proses.php?aksi=update" method="post">
+        <?php
+        foreach($db->edit($_GET['id']) as $d){
+        ?>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="id" value="<?php echo $d['id'] ?>">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" value="<?php echo $d['username'] ?>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Password</label>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="password" type="password" name="password" class="form-control" value="<?php echo $d['pass']?>">
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="checkbox" onclick="myViewPass()"> Show Password
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Akses</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="akses">
+                        <?php if($d['akses_id']== 1){?>
+                            <option value=1 selected>Admin</option>
+                            <option value=2>User</option>
+                        <?php }elseif($d['akses_id']== 2){?>
+                            <option value=1>Admin</option>
+                            <option value=2 selected>User</option>
+                        <?php }?>
+                    </select> 
+                </div>   
+            </div>
+                <button class="btn btn-primary" type="submit" name="submit"><i class="fas fa-save"></i> Update</button>
+                <a class="btn btn-danger" href="tampil-data.php"><i class="fas fa-backspace"></i> Batal</a>
+        <?php } ?>
+        </form>
+    </div>
+   
     <script>
     function myViewPass() {
     var x = document.getElementById("password");

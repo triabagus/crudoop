@@ -27,7 +27,7 @@
                     endif;
                 ?>
             </td>
-            <td><i class="fas fa-heart"></i> <?php echo $x['like'];?></td>
+            <td><i class="fas fa-heart"></i> <?php echo $x['suka'];?></td>
             <td>
                 <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update"><i class="fas fa-edit"></i> Edit</a>
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')"><i class="fas fa-trash-alt"></i> Hapus</a>			

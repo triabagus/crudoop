@@ -62,7 +62,7 @@ class database{
 
     function insert($username,$pass,$akses){
 
-        $resInsert = mysqli_query($this->conn, "INSERT INTO admin(username,pass,akses_id) VALUES ('$username','$pass','$akses')");
+        $resInsert = mysqli_query($this->conn, "INSERT INTO admin(username,pass,akses_id,suka,gambar) VALUES ('$username','$pass','$akses',0,'')");
         return $resInsert;
     }
 
@@ -88,7 +88,7 @@ class database{
 
     function like($id){
 
-        $sql     = "UPDATE `admin` SET `like`= `like`+1 WHERE id = '$id'";
+        $sql     = "UPDATE `admin` SET `suka`= `suka`+1 WHERE id = '$id'";
         $resLike = mysqli_query($this->conn, $sql);
         return $resLike;
     }
@@ -96,52 +96,52 @@ class database{
 
 ////////// function counter visitor
 
-class hitCuonter{
-    private $expire; // menentukan umur cookies
-    private $file      ='counter.txt'; //file buat menyimpan counter hit visitor
+// class hitCuonter{
+//     private $expire; // menentukan umur cookies
+//     private $file      ='counter.txt'; //file buat menyimpan counter hit visitor
 
-    public function __construct(){
-        if(!file_exists($this->file)){ // file exists : fungsi php untuk mengetahui apakah ada file tersebut
-            // kondisi apabila file counter.txt belom ada ,buat baru dengan nilai 0
-            $handle    = fopen($this->file,'w');
-            $data      = 0;
-            fwrite($handle,$data);
-        }
-        $this->expire  = 30 * 86400; //usia cookies 1 bulan
-    }
+//     public function __construct(){
+//         if(!file_exists($this->file)){ // file exists : fungsi php untuk mengetahui apakah ada file tersebut
+//             // kondisi apabila file counter.txt belom ada ,buat baru dengan nilai 0
+//             $handle    = fopen($this->file,'w');
+//             $data      = 0;
+//             fwrite($handle,$data);
+//         }
+//         $this->expire  = 30 * 86400; //usia cookies 1 bulan
+//     }
 
-    public function hitung(){
-        if(!isset($_COOKIE['counter'])){
-            //cookies kosong dan tambahkan jumlah pengunjung
-            $handle     = fopen($this->file,'r');
-            $data       = intval(fread($handle,filesize($this->file)));
-            // mengambil nilai dari counter.txt
-            $nilaiBaru  = $data + 1;// tambahkan nilai 1
-            //simpan nilai baru dengan
-            $handle     =  fopen($this->file,'w');
-            fwrite($handle, $nilaiBaru);
-            setcookie('counter', time(), time() + $this->expire);
-            // tambahkan cookiesdengan nilai tanggal sekarang
-        }
-    }
+//     public function hitung(){
+//         if(!isset($_COOKIE['counter'])){
+//             //cookies kosong dan tambahkan jumlah pengunjung
+//             $handle     = fopen($this->file,'r');
+//             $data       = intval(fread($handle,filesize($this->file)));
+//             // mengambil nilai dari counter.txt
+//             $nilaiBaru  = $data + 1;// tambahkan nilai 1
+//             //simpan nilai baru dengan
+//             $handle     =  fopen($this->file,'w');
+//             fwrite($handle, $nilaiBaru);
+//             setcookie('counter', time(), time() + $this->expire);
+//             // tambahkan cookiesdengan nilai tanggal sekarang
+//         }
+//     }
 
-    public function tampil(){
-        //mengambil nilai counter.txt
-        $handle     = fopen($this->file,'r');
-        $data       = intval(fread($handle, filesize($this->file)));
-        return $data;
-    }
+//     public function tampil(){
+//         //mengambil nilai counter.txt
+//         $handle     = fopen($this->file,'r');
+//         $data       = intval(fread($handle, filesize($this->file)));
+//         return $data;
+//     }
 
-    public function waktu(){
-        $history    = null;
-        // menampilakan kapan user visit 
-        if(!empty($_COOKIE['counter'])){
-                $get        = $_COOKIE['counter'];
-                $history    = date("d F Y",$get);
-        }
-        return $history;
-    }
-}
+//     public function waktu(){
+//         $history    = null;
+//         // menampilakan kapan user visit 
+//         if(!empty($_COOKIE['counter'])){
+//                 $get        = $_COOKIE['counter'];
+//                 $history    = date("d F Y",$get);
+//         }
+//         return $history;
+//     }
+// }
 
 
 
