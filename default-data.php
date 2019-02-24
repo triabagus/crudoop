@@ -35,7 +35,7 @@
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')"><i class="fas fa-trash-alt"></i> Hapus</a>			
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like"><i class="fas fa-thumbs-up"></i> Like</a>
 
-                <a href="download.php?id=<?php echo $x['id']; ?>&aksi=download"><i class="fas fa-file-download"></i> download</a>
+                <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=download"><i class="fas fa-file-download"></i> download</a>
             </td>
         </tr>
         <?php 

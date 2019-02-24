@@ -34,5 +34,8 @@
         }elseif($aksi == "like"){
             $db->like($_GET['id']);
             header("location:tampil-data.php");
+        }elseif($aksi == "download"){
+            $db->download($_GET['id']);
+            header("location:tampil-data.php");
         }
 ?>

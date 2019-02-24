@@ -100,6 +100,24 @@ class database{
         $resLike = mysqli_query($this->conn, $sql);
         return $resLike;
     }
+
+    function download($id){
+        $sql      = mysqli_query($this->conn,"SELECT * FROM admin WHERE id='$id'");
+        while($data = mysqli_fetch_array($sql)){
+            $file = $data['gambar'];
+                    if (file_exists($file)) {
+                        header('Content-Description: File Transfer');
+                        header('Content-Type: application/octet-stream');
+                        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+                        header('Expires: 0');
+                        header('Cache-Control: must-revalidate');
+                        header('Pragma: public');
+                        header('Content-Length: ' . filesize($file));
+                        readfile($file);
+                        exit;
+                    }
+        }
+    }
 } 
 
 class sign extends database{
