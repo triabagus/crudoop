@@ -77,7 +77,8 @@
 
                 <!-- Place this render call where appropriate. -->
                 <script type="text/javascript">gapi.plus.go();</script>
-
+                
+                <!-- Linkedin. -->
                 <div>
                     <script type="IN/Share" data-url="http://teknologikopin.blogspot.com/2015/08/apakah-memenuhi-syaratkah-teknologi.html" data-counter="top" id="linked_url"></script>
                 </div>
