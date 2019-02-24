@@ -36,6 +36,47 @@
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like"><i class="fas fa-thumbs-up"></i> Like</a>
 
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=download"><i class="fas fa-file-download"></i> download</a>
+
+                <div id="fb-root"></div>
+                <script async defer src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v3.2"></script>
+                <div class="fb-share-button" data-href="http://teknologikopin.blogspot.com/2015/08/apakah-memenuhi-syaratkah-teknologi.html" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div>
+                <!-- <span class="facebook-share" data-js="facebook-share">Share on Facebook</span> -->
+                <button class="twitter-share" data-js="twitter-share">
+                    <i class="fab fa-twitter"></i> Share
+                </button>
+                <script>
+                    var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+                    twitterShare.onclick = function(e) {
+                    e.preventDefault();
+                    var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+                    if(twitterWindow.focus) { twitterWindow.focus(); }
+                        return false;
+                    }
+
+                    // var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+                    // facebookShare.onclick = function(e) {
+                    // e.preventDefault();
+                    // var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+                    // if(facebookWindow.focus) { facebookWindow.focus(); }
+                    //     return false;
+                    // }
+                </script>
+                <!-- 
+                    google + share
+                    Place this tag in your head or just before your close body tag.
+                 -->
+                <script src="https://apis.google.com/js/platform.js" async defer>
+                {lang: 'id'}
+                </script>
+                <!-- Place this tag where you want the share button to render. -->
+                <div class="g-plus" data-action="share" data-height="24" data-href="http://teknologikopin.blogspot.com/2015/08/apakah-memenuhi-syaratkah-teknologi.html"></div>
+
+                <!-- Place this render call where appropriate. -->
+                <script type="text/javascript">gapi.plus.go();</script>
+
+                    
             </td>
         </tr>
         <?php 
