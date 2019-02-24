@@ -17,8 +17,8 @@
     ?>
     <div class="container" style="margin-top:50px;">
         <h1>CRUD OOP PHP</h1>
-        <h3>Tambah Data </h3>
-        <form action="proses.php?aksi=update" method="post">
+        <h3>Edit Data </h3>
+        <form action="proses.php?aksi=update" method="POST" enctype="multipart/form-data">
         <?php
         foreach($db->edit($_GET['id']) as $d){
         ?>
@@ -51,6 +51,15 @@
                         <?php }?>
                     </select> 
                 </div>   
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload Foto</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="file">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
             </div>
                 <button class="btn btn-primary" type="submit" name="submit"><i class="fas fa-save"></i> Update</button>
                 <a class="btn btn-danger" href="tampil-data.php"><i class="fas fa-backspace"></i> Batal</a>

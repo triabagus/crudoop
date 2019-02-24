@@ -1,4 +1,5 @@
 <?php
+
 class database{
  
 	protected $host = "localhost";
@@ -9,6 +10,7 @@ class database{
 
     function __construct(){
         $this->conn = mysqli_connect($this->host, $this->uname, $this->pass, $this->db)or die(mysqli_error());
+        
     }
 
     function tampil_data(){
@@ -57,13 +59,14 @@ class database{
         else:
             echo "<tr><td colspan='6' style='text-align:center;' >Data tidak ditemukan</td></tr>";
         endif;
-        
     }
 
-    function insert($username,$pass,$akses){
-
-        $resInsert = mysqli_query($this->conn, "INSERT INTO admin(username,pass,akses_id,suka,gambar) VALUES ('$username','$pass','$akses',0,'')");
+    function insert($username,$pass,$akses,$gambar){
+        
+        $resInsert = mysqli_query($this->conn, "INSERT INTO admin(username,pass,akses_id,suka,gambar) VALUES ('$username','$pass','$akses',0,'$gambar')");
+         
         return $resInsert;
+                   
     }
 
     function hapus($id){
@@ -80,7 +83,13 @@ class database{
         return $hasil;
     }
 
-    function update($id,$username,$pass,$akses){
+    function update($id,$username,$pass,$akses,$gambar){
+
+        $resUpdate = mysqli_query($this->conn, "UPDATE admin SET username='$username',pass='$pass',akses_id='$akses',gambar='$gambar' WHERE id='$id'");
+        return $resUpdate;
+    }
+
+    function updateNoImage($id,$username,$pass,$akses){
 
         $resUpdate = mysqli_query($this->conn, "UPDATE admin SET username='$username',pass='$pass',akses_id='$akses' WHERE id='$id'");
         return $resUpdate;

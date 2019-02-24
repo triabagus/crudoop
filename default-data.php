@@ -7,6 +7,7 @@
             <th>Password</th>
             <th>Akses ID</th>
             <th>Jumlah Like</th>
+            <th>Gambar</th>
             <th>Opsi</th>
         </tr>
     </thead>
@@ -28,10 +29,13 @@
                 ?>
             </td>
             <td><i class="fas fa-heart"></i> <?php echo $x['suka'];?></td>
+            <td><img src="<?php echo $x['gambar'];?>" width="100px" height="auto"></td>
             <td>
                 <a href="edit-data.php?id=<?php echo $x['id']; ?>&aksi=update"><i class="fas fa-edit"></i> Edit</a>
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=hapus" onclick="return confirm('anda ingin menghapus data , <?php echo $x['username']; ?> ?')"><i class="fas fa-trash-alt"></i> Hapus</a>			
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like"><i class="fas fa-thumbs-up"></i> Like</a>
+
+                <a href="download.php?id=<?php echo $x['id']; ?>&aksi=download"><i class="fas fa-file-download"></i> download</a>
             </td>
         </tr>
         <?php 

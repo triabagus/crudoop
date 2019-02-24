@@ -14,7 +14,7 @@
     <div class="container" style="margin-top:50px;">
         <h1>CRUD OOP PHP</h1>
         <h3>Tambah Data </h3>
-        <form action="proses.php?aksi=tambah" method="POST">
+        <form action="proses.php?aksi=tambah" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     <span class="input-group-text" id="inputGroupFileAddon01">Upload Foto</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="file">
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
             </div>
