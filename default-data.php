@@ -9,6 +9,7 @@
             <th>Jumlah Like</th>
             <th>Gambar</th>
             <th>Opsi</th>
+            <th>Share</th>
         </tr>
     </thead>
         <?php
@@ -36,8 +37,9 @@
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=like"><i class="fas fa-thumbs-up"></i> Like</a>
 
                 <a href="proses.php?id=<?php echo $x['id']; ?>&aksi=download"><i class="fas fa-file-download"></i> download</a>
-
-                <div id="fb-root"></div>
+            </td>
+            <td>
+            <div id="fb-root"></div>
                 <script async defer src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v3.2"></script>
                 <div class="fb-share-button" data-href="http://teknologikopin.blogspot.com/2015/08/apakah-memenuhi-syaratkah-teknologi.html" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div>
                 <!-- <span class="facebook-share" data-js="facebook-share">Share on Facebook</span> -->
@@ -76,7 +78,10 @@
                 <!-- Place this render call where appropriate. -->
                 <script type="text/javascript">gapi.plus.go();</script>
 
-                    
+                <div>
+                    <script type="IN/Share" data-url="http://teknologikopin.blogspot.com/2015/08/apakah-memenuhi-syaratkah-teknologi.html" data-counter="top" id="linked_url"></script>
+                </div>
+                <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
             </td>
         </tr>
         <?php 
